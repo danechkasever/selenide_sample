@@ -27,7 +27,7 @@ dependencies {
     implementation("io.qameta.allure:allure-java-commons:${Versions.ALLURE}")
     implementation("io.qameta.allure:allure-testng:${Versions.ALLURE}")
     implementation("io.qameta.allure:allure-selenide:${Versions.ALLURE}")
-    implementation("com.codeborne:selenide:${Versions.SELENIDE}")
+    implementation("com.codeborne:selenide-core:${Versions.SELENIDE}")
     implementation("org.testng:testng:${Versions.TESTNG}")
     implementation("com.google.inject:guice:5.0.1")
     runtimeOnly("org.aspectj:aspectjweaver:${Versions.ASPECTJ}")
@@ -36,6 +36,8 @@ dependencies {
 
 allure {
     setVersion("${Versions.ALLURE}")
+    adapter.autoconfigure.set(true)
+    adapter.aspectjVersion.set(Versions.ASPECTJ)
 }
 tasks.test {
     ignoreFailures = true

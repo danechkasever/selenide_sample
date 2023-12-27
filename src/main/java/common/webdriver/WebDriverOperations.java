@@ -1,23 +1,31 @@
 package common.webdriver;
 
-import com.codeborne.selenide.Selenide;
+
+import com.codeborne.selenide.SelenideDriver;
+import com.google.inject.Inject;
 import configs.Configurations;
 
 public class WebDriverOperations {
+    private final SelenideDriver browser;
+
+    @Inject
+    public WebDriverOperations(Browser driver) {
+        this.browser = driver.getDriver();
+    }
 
     public void open() {
-        Selenide.open(Configurations.url);
+        browser.open(Configurations.url);
     }
 
     public void open(String url) {
-        Selenide.open(url);
+        browser.open(url);
     }
 
     public void refresh() {
-        Selenide.refresh();
+        browser.refresh();
     }
 
     public void close() {
-        Selenide.closeWebDriver();
+        browser.close();
     }
 }

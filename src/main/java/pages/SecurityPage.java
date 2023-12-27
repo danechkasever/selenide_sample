@@ -1,13 +1,20 @@
 package pages;
 
+import com.codeborne.selenide.SelenideDriver;
+import com.google.inject.Inject;
+import common.webdriver.Browser;
 import org.openqa.selenium.By;
 
-import static com.codeborne.selenide.Selenide.$;
-
 public class SecurityPage {
+    private final SelenideDriver browser;
     private final By passkeysForm = By.className("passkeys-register-wrapper");
 
+    @Inject
+    public SecurityPage(Browser driver){
+        this.browser = driver.getDriver();
+    }
+
     public Boolean isPasskeysFormDisplayed() {
-        return $(passkeysForm).isDisplayed();
+        return browser.$(passkeysForm).isDisplayed();
     }
 }

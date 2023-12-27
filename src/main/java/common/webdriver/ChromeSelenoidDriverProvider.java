@@ -13,7 +13,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.time.Duration;
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 public class ChromeSelenoidDriverProvider implements WebDriverProvider {
 
@@ -50,7 +49,6 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
         }
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().timeouts().setScriptTimeout(Duration.ofSeconds(30));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
         driver.manage().window().maximize();
         return driver;
