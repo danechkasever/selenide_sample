@@ -23,9 +23,7 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-web-security");
         HashMap<String, Object> chromePrefs = new HashMap<>();
-        chromePrefs.put("disable-popup-blocking", true);
         chromePrefs.put("download.extensions_to_open", "");
-        chromePrefs.put("plugins.always_open_pdf_externally", true);
         chromePrefs.put("browser.download.folderList", 2);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir") + "\\report");
         chromePrefs.put("browser.helperApps.neverAsk.saveToDisk", "text/csv");
@@ -39,15 +37,14 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
         desiredcapabilities.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
         options.merge(capabilities);
         options.merge(desiredcapabilities);
-        RemoteWebDriver driver = null;
+        RemoteWebDriver driver;
         try {
             driver = new RemoteWebDriver(
                     URI.create(System.getProperty("selenoid_url")).toURL(),
                     options);
         } catch (MalformedURLException e) {
-            e.printStackTrace();
+            throw new RuntimeException("Incorrect " + System.getProperty("selenoid_url") + "address");
         }
-
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
         driver.manage().window().maximize();

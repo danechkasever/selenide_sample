@@ -3,6 +3,7 @@ package steps;
 import com.google.inject.Inject;
 import common.webdriver.Browser;
 import io.qameta.allure.Step;
+import models.Auth;
 import org.testng.Assert;
 import pages.AuthPage;
 
@@ -15,9 +16,9 @@ public class AuthStep {
     }
 
     @Step("SignIn with login {0} and password {1}")
-    public void signIn(String login, String password) {
-        new AuthPage(browser).setLogin(login);
-        new AuthPage(browser).setPassword(password);
+    public void signIn(Auth auth) {
+        new AuthPage(browser).setLogin(auth.getUser());
+        new AuthPage(browser).setPassword(auth.getPassword());
         new AuthPage(browser).signInBtnClick();
     }
 

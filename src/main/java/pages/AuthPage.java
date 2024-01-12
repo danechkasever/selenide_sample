@@ -7,7 +7,7 @@ import common.webdriver.CustomCommands;
 import org.openqa.selenium.By;
 
 public class AuthPage implements CustomCommands {
-    private final SelenideDriver browser;
+    private final SelenideDriver selenideDriver;
     private final By loginInput = By.id("userid");
     private final By signInContinueBtn = By.id("signin-continue-btn");
     private final By passwordInput = By.id("pass");
@@ -15,28 +15,28 @@ public class AuthPage implements CustomCommands {
 
     @Inject
     public AuthPage(Browser driver) {
-        this.browser = driver.getDriver();
+        this.selenideDriver = driver.getDriver();
     }
 
 
     public void setLogin(String login) {
-        setText(browser.$(loginInput), login);
-        clickElement(browser.$(signInContinueBtn));
+        setText(selenideDriver.$(loginInput), login);
+        clickElement(selenideDriver.$(signInContinueBtn));
     }
 
     public Boolean isLoginDisplayed() {
-        return browser.$(loginInput).isDisplayed();
+        return selenideDriver.$(loginInput).isDisplayed();
     }
 
     public Boolean isSignInContinueBtnDisplayed() {
-        return browser.$(signInContinueBtn).isDisplayed();
+        return selenideDriver.$(signInContinueBtn).isDisplayed();
     }
 
     public void setPassword(String password) {
-        setText(browser.$(passwordInput), password);
+        setText(selenideDriver.$(passwordInput), password);
     }
 
     public void signInBtnClick() {
-        clickElement(browser.$(signInBtn));
+        clickElement(selenideDriver.$(signInBtn));
     }
 }

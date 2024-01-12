@@ -7,6 +7,7 @@ import common.webdriver.BrowserModule;
 import common.webdriver.WebDriverOperations;
 import configs.Configurations;
 import io.qameta.allure.Feature;
+import models.Auth;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -40,7 +41,8 @@ public class AuthorisationTest {
 
     @Test
     void authSuccessfulTest() {
-        authStep.signIn(Configurations.user, Configurations.password);
+        System.out.println(Configurations.user);
+        authStep.signIn(new Auth());
         securityStep.checkSecurityPageVisibility();
     }
 

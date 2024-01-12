@@ -6,26 +6,26 @@ import com.google.inject.Inject;
 import configs.Configurations;
 
 public class WebDriverOperations {
-    private final SelenideDriver browser;
+    private final SelenideDriver selenideDriver;
 
     @Inject
     public WebDriverOperations(Browser driver) {
-        this.browser = driver.getDriver();
+        this.selenideDriver = driver.getDriver();
     }
 
     public void open() {
-        browser.open(Configurations.url);
+        selenideDriver.open(Configurations.url);
     }
 
     public void open(String url) {
-        browser.open(url);
+        selenideDriver.open(url);
     }
 
     public void refresh() {
-        browser.refresh();
+        selenideDriver.refresh();
     }
 
     public void close() {
-        browser.close();
+        selenideDriver.close();
     }
 }
