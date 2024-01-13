@@ -5,7 +5,6 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import common.webdriver.BrowserModule;
 import common.webdriver.WebDriverOperations;
-import configs.Configurations;
 import io.qameta.allure.Feature;
 import models.Auth;
 import org.testng.annotations.AfterMethod;
@@ -41,7 +40,6 @@ public class AuthorisationTest {
 
     @Test
     void authSuccessfulTest() {
-        System.out.println(Configurations.user);
         authStep.signIn(new Auth());
         securityStep.checkSecurityPageVisibility();
     }

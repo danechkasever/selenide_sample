@@ -29,7 +29,7 @@ public class CustomBrowser implements Browser {
         return switch (Configurations.browser) {
             case "chrome" -> ChromeDriverProvider.class.getCanonicalName();
             case "selenoid.chrome" -> ChromeSelenoidDriverProvider.class.getCanonicalName();
-            default ->  throw new RuntimeException("Incorrect " + Configurations.browser + " browser");
+            default -> throw new RuntimeException(String.format("Incorrect %s browser", Configurations.browser));
         };
     }
 
