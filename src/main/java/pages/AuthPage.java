@@ -14,8 +14,8 @@ public class AuthPage implements CustomCommands {
     private final By signInBtn = By.id("sgnBt");
 
     @Inject
-    public AuthPage(Browser driver) {
-        this.selenideDriver = driver.getDriver();
+    public AuthPage(Browser browser) {
+        this.selenideDriver = browser.getDriver();
     }
 
 

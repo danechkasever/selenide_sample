@@ -20,7 +20,7 @@ public class CustomBrowser implements Browser {
                 .screenshots(true)
                 .savePageSource(false)
                 .reopenBrowserOnFail(true)
-                .pollingInterval(6000)
+                .pollingInterval(3000)
                 .browser(getProviderName());
     }
 

@@ -1,52 +1,37 @@
 package auth;
 
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
-import common.webdriver.BrowserModule;
-import common.webdriver.WebDriverOperations;
 import io.qameta.allure.Feature;
 import models.Auth;
 import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
-import steps.AuthStep;
-import steps.SecurityStep;
+import parameters.ActionsParameter;
 
 @Feature("Auth")
 public class AuthorisationTest {
+    ActionsParameter actionsParameter;
 
-
-    WebDriverOperations webDriverOperations;
-
-    AuthStep authStep;
-
-    SecurityStep securityStep;
-
-
-    @BeforeMethod
-    void beforeMethod() {
-        Injector injector = Guice.createInjector(new BrowserModule());
-        webDriverOperations = injector.getInstance(WebDriverOperations.class);
-        authStep = injector.getInstance(AuthStep.class);
-        securityStep = injector.getInstance(SecurityStep.class);
-        webDriverOperations.open();
-    }
-
-    @Test
+    @Test()
     void authVisibilityTest() {
-        authStep.checkAuthPageVisibility();
+        actionsParameter = new ActionsParameter();
+        actionsParameter.getWebDriverOperations().openPage();
+        actionsParameter.getAllSteps().authStep().checkAuthPageVisibility();
     }
 
-    @Test
+
+    @Test()
+    @Parameters
     void authSuccessfulTest() {
-        authStep.signIn(new Auth());
-        securityStep.checkSecurityPageVisibility();
+        actionsParameter = new ActionsParameter();
+        actionsParameter.getWebDriverOperations().openPage();
+        actionsParameter.getAllSteps().authStep().signIn(new Auth());
+        actionsParameter.getAllSteps().securityStep().checkSecurityPageVisibility();
     }
 
     @AfterMethod
     void afterMethod() {
-        webDriverOperations.close();
+        actionsParameter.getWebDriverOperations().closeDriver();
     }
 
 }

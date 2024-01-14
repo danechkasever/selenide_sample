@@ -38,7 +38,7 @@ public class ChromeDriverProvider implements WebDriverProvider {
         options.merge(desiredcapabilities);
         WebDriver driver = new ChromeDriver(options);
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         return driver;
     }

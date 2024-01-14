@@ -10,8 +10,8 @@ public class SecurityPage {
     private final By passkeysForm = By.className("passkeys-register-wrapper");
 
     @Inject
-    public SecurityPage(Browser driver){
-        this.selenideDriver = driver.getDriver();
+    public SecurityPage(Browser browser){
+        this.selenideDriver = browser.getDriver();
     }
 
     public Boolean isPasskeysFormDisplayed() {

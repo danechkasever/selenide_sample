@@ -9,22 +9,24 @@ import pages.AuthPage;
 
 public class AuthStep {
     private final Browser browser;
+    @Inject
+    AuthPage authPage;
 
     @Inject
-    public AuthStep(Browser driver) {
-        this.browser = driver;
+    public AuthStep(Browser browser) {
+        this.browser = browser;
     }
 
     @Step("SignIn with login {0} and password {1}")
     public void signIn(Auth auth) {
-        new AuthPage(browser).setLogin(auth.getUser());
-        new AuthPage(browser).setPassword(auth.getPassword());
-        new AuthPage(browser).signInBtnClick();
+        authPage.setLogin(auth.getUser());
+        authPage.setPassword(auth.getPassword());
+        authPage.signInBtnClick();
     }
 
     @Step("Check Auth Page Visibility")
     public void checkAuthPageVisibility() {
-        Assert.assertTrue(new AuthPage(browser).isLoginDisplayed(), "Login input isn't visible");
-        Assert.assertTrue(new AuthPage(browser).isSignInContinueBtnDisplayed(), "SignInContinue Button isn't visible");
+        Assert.assertTrue(authPage.isLoginDisplayed(), "Login input isn't visible");
+        Assert.assertTrue(authPage.isSignInContinueBtnDisplayed(), "SignInContinue Button isn't visible");
     }
 }

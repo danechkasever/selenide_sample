@@ -8,13 +8,15 @@ import pages.SecurityPage;
 
 public class SecurityStep {
     private final Browser browser;
+    @Inject
+    SecurityPage securityPage;
 
     @Inject
-    public SecurityStep(Browser driver) {
-        this.browser = driver;
+    public SecurityStep(Browser browser) {
+        this.browser = browser;
     }
     @Step("Check Security Page Visibility")
     public void checkSecurityPageVisibility() {
-        Assert.assertTrue(new SecurityPage(browser).isPasskeysFormDisplayed(), "Security form isn't visible");
+        Assert.assertTrue(securityPage.isPasskeysFormDisplayed(), "Security form isn't visible");
     }
 }

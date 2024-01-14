@@ -46,7 +46,7 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
             throw new RuntimeException(String.format("Incorrect %s address", System.getProperty("selenoid_url")));
         }
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(40));
+        driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().window().maximize();
         return driver;
     }

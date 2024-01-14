@@ -13,11 +13,11 @@ public class WebDriverOperations {
         this.selenideDriver = driver.getDriver();
     }
 
-    public void open() {
+    public void openPage() {
         selenideDriver.open(Configurations.url);
     }
 
-    public void open(String url) {
+    public void openPage(String url) {
         selenideDriver.open(url);
     }
 
@@ -25,7 +25,7 @@ public class WebDriverOperations {
         selenideDriver.refresh();
     }
 
-    public void close() {
+    public void closeDriver() {
         selenideDriver.close();
     }
 }
