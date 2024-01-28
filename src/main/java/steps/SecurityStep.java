@@ -3,10 +3,10 @@ package steps;
 import com.google.inject.Inject;
 import common.webdriver.Browser;
 import io.qameta.allure.Step;
-import org.testng.Assert;
+import org.assertj.core.api.WithAssertions;
 import pages.SecurityPage;
 
-public class SecurityStep {
+public class SecurityStep implements WithAssertions {
     private final Browser browser;
     @Inject
     SecurityPage securityPage;
@@ -15,8 +15,9 @@ public class SecurityStep {
     public SecurityStep(Browser browser) {
         this.browser = browser;
     }
+
     @Step("Check Security Page Visibility")
     public void checkSecurityPageVisibility() {
-        Assert.assertTrue(securityPage.isPasskeysFormDisplayed(), "Security form isn't visible");
+        assertThat(securityPage.isPasskeysFormDisplayed()).isTrue().as("Security visibility");
     }
 }

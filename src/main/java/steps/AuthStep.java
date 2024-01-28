@@ -4,10 +4,10 @@ import com.google.inject.Inject;
 import common.webdriver.Browser;
 import io.qameta.allure.Step;
 import models.Auth;
-import org.testng.Assert;
+import org.assertj.core.api.WithAssertions;
 import pages.AuthPage;
 
-public class AuthStep {
+public class AuthStep implements WithAssertions {
     private final Browser browser;
     @Inject
     AuthPage authPage;
@@ -26,7 +26,7 @@ public class AuthStep {
 
     @Step("Check Auth Page Visibility")
     public void checkAuthPageVisibility() {
-        Assert.assertTrue(authPage.isLoginDisplayed(), "Login input isn't visible");
-        Assert.assertTrue(authPage.isSignInContinueBtnDisplayed(), "SignInContinue Button isn't visible");
+        assertThat(authPage.isLoginDisplayed()).isTrue().as("Login input visibility");
+        assertThat(authPage.isSignInContinueBtnDisplayed()).isTrue().as("SignInContinue Button visibility");
     }
 }
