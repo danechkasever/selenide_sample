@@ -7,13 +7,13 @@ import models.Auth;
 import org.assertj.core.api.WithAssertions;
 import pages.AuthPage;
 
-public class AuthStep implements WithAssertions {
+public class AuthSteps implements WithAssertions {
     private final Browser browser;
     @Inject
     AuthPage authPage;
 
     @Inject
-    public AuthStep(Browser browser) {
+    public AuthSteps(Browser browser) {
         this.browser = browser;
     }
 
@@ -24,9 +24,9 @@ public class AuthStep implements WithAssertions {
         authPage.signInBtnClick();
     }
 
-    @Step("Check Auth Page Visibility")
-    public void checkAuthPageVisibility() {
-        assertThat(authPage.isLoginDisplayed()).isTrue().as("Login input visibility");
-        assertThat(authPage.isSignInContinueBtnDisplayed()).isTrue().as("SignInContinue Button visibility");
+    @Step("Check Set Login Page Visibility")
+    public void checkSetLoginVisibility() {
+        assertThat(authPage.isLoginInputDisplayed()).isTrue().as("Login input visibility");
+        assertThat(authPage.isContinueWithEmailBtnDisplayed()).isTrue().as("SignInContinue Button visibility");
     }
 }

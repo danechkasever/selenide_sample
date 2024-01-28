@@ -7,15 +7,16 @@ import common.webdriver.CustomCommands;
 import forms.SubmitEmailForm;
 import org.openqa.selenium.By;
 
-public class AuthPage implements CustomCommands {
+public class SignUpPage implements CustomCommands {
     private final SelenideDriver selenideDriver;
-    private final By passwordInput = By.id("password");
-    private final By signInBtn = By.cssSelector("button[type='submit']");
+    private final By passwordInput = By.id("new_password");
+    private final By passwordConfirmationInput = By.id("confirmed_password");
+    private final By signUpBtn = By.cssSelector("button[type='submit']");
     @Inject
     SubmitEmailForm submitEmailForm;
 
     @Inject
-    public AuthPage(Browser browser) {
+    public SignUpPage(Browser browser) {
         this.selenideDriver = browser.getDriver();
     }
 
@@ -37,7 +38,11 @@ public class AuthPage implements CustomCommands {
         setText(selenideDriver.$(passwordInput), password);
     }
 
-    public void signInBtnClick() {
-        clickElement(selenideDriver.$(signInBtn));
+    public void setPasswordConfirmation(String password) {
+        setText(selenideDriver.$(passwordConfirmationInput), password);
+    }
+
+    public void signUpBtnClick() {
+        clickElement(selenideDriver.$(signUpBtn));
     }
 }

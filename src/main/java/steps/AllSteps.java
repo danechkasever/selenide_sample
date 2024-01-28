@@ -10,9 +10,11 @@ import lombok.experimental.Accessors;
 public class AllSteps {
     private final Browser browser;
     @Inject
-    private AuthStep authStep;
+    private AuthSteps authStep;
     @Inject
-    private SecurityStep securityStep;
+    private MainPageVisibilitySteps securityStep;
+    @Inject
+    private MainPageVisibilitySteps mainPageVisibilitySteps;
 
     @Inject
     public AllSteps(Browser browser) {

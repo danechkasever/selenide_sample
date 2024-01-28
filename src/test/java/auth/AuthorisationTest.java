@@ -8,20 +8,24 @@ import parameters.ActionsParameter;
 import resolvers.ActionResolver;
 
 @Feature("Auth")
-@ExtendWith(ActionResolver.class)
+
 public class AuthorisationTest {
 
     @Test()
+    @ExtendWith(ActionResolver.class)
     void authVisibilityTest(ActionsParameter actionsParameter) {
         actionsParameter.getWebDriverOperations().openPage();
-        actionsParameter.getAllSteps().authStep().checkAuthPageVisibility();
+        actionsParameter.getAllSteps().mainPageVisibilitySteps().navigateToSignIn();
+        actionsParameter.getAllSteps().authStep().checkSetLoginVisibility();
     }
 
 
     @Test()
+    @ExtendWith(ActionResolver.class)
     void authSuccessfulTest(ActionsParameter actionsParameter) {
         actionsParameter.getWebDriverOperations().openPage();
+        actionsParameter.getAllSteps().mainPageVisibilitySteps().navigateToSignIn();
         actionsParameter.getAllSteps().authStep().signIn(new Auth());
-        actionsParameter.getAllSteps().securityStep().checkSecurityPageVisibility();
+        actionsParameter.getAllSteps().mainPageVisibilitySteps().checkProfileButtonVisibility();
     }
 }
