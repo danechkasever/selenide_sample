@@ -14,7 +14,6 @@ public class AuthorisationTest {
     @Test()
     @ExtendWith(ActionResolver.class)
     void authVisibilityTest(ActionsParameter actionsParameter) {
-        actionsParameter.getWebDriverOperations().openPage();
         actionsParameter.getAllSteps().mainPageVisibilitySteps().navigateToSignIn();
         actionsParameter.getAllSteps().authStep().checkSetLoginVisibility();
     }
@@ -23,7 +22,6 @@ public class AuthorisationTest {
     @Test()
     @ExtendWith(ActionResolver.class)
     void authSuccessfulTest(ActionsParameter actionsParameter) {
-        actionsParameter.getWebDriverOperations().openPage();
         actionsParameter.getAllSteps().mainPageVisibilitySteps().navigateToSignIn();
         actionsParameter.getAllSteps().authStep().signIn(new Auth());
         actionsParameter.getAllSteps().mainPageVisibilitySteps().checkProfileButtonVisibility();
