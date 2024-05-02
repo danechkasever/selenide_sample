@@ -18,12 +18,12 @@ public class ActionResolver implements ParameterResolver, AfterEachCallback, Bef
 
     @Override
     public void afterEach(ExtensionContext extensionContext) {
-        actionsParameter.getWebDriverOperations().closeDriver();
+        actionsParameter.getAllSteps().iBrowser().closeDriver();
     }
 
     @Override
     public void beforeEach(ExtensionContext extensionContext) {
         actionsParameter = new ActionsParameter();
-        actionsParameter.getWebDriverOperations().openPage();
+        actionsParameter.getAllSteps().iBrowser().openPage();
     }
 }

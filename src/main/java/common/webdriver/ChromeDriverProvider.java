@@ -9,7 +9,6 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
-import java.sql.DriverManager;
 import java.time.Duration;
 import java.util.HashMap;
 
@@ -25,7 +24,7 @@ public class ChromeDriverProvider implements WebDriverProvider {
         chromePrefs.put("download.prompt_for_download", false);
         chromePrefs.put("plugins.always_open_pdf_externally", true);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir") + "\\report");
-        chromePrefs.put("browser.helperApps.neverAsk.saveToDisk", "text/csv");
+        chromePrefs.put("IBrowser.helperApps.neverAsk.saveToDisk", "text/csv");
         chromePrefs.put("w3c", false);
         options.setExperimentalOption("prefs", chromePrefs);
         DesiredCapabilities desiredcapabilities = new DesiredCapabilities();

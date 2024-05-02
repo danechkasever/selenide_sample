@@ -1,20 +1,20 @@
 package steps;
 
 import com.google.inject.Inject;
-import common.webdriver.Browser;
+import common.webdriver.IBrowser;
 import io.qameta.allure.Step;
 import models.Auth;
 import org.assertj.core.api.WithAssertions;
 import pages.AuthPage;
 
 public class AuthSteps implements WithAssertions {
-    private final Browser browser;
+    private final IBrowser iBrowser;
     @Inject
     AuthPage authPage;
 
     @Inject
-    public AuthSteps(Browser browser) {
-        this.browser = browser;
+    public AuthSteps(IBrowser iBrowser) {
+        this.iBrowser = iBrowser;
     }
 
     @Step("SignIn with login {0} and password {1}")

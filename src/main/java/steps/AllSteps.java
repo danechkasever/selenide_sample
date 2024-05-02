@@ -1,14 +1,14 @@
 package steps;
 
 import com.google.inject.Inject;
-import common.webdriver.Browser;
+import common.webdriver.IBrowser;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
 @Getter
 @Accessors(fluent = true)
 public class AllSteps {
-    private final Browser browser;
+    private final IBrowser iBrowser;
     @Inject
     private AuthSteps authStep;
     @Inject
@@ -17,7 +17,7 @@ public class AllSteps {
     private MainPageVisibilitySteps mainPageVisibilitySteps;
 
     @Inject
-    public AllSteps(Browser browser) {
-        this.browser = browser;
+    public AllSteps(IBrowser iBrowser) {
+        this.iBrowser =iBrowser;
     }
 }

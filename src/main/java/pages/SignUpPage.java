@@ -1,48 +1,47 @@
 package pages;
 
-import com.codeborne.selenide.SelenideDriver;
 import com.google.inject.Inject;
-import common.webdriver.Browser;
-import common.webdriver.CustomCommands;
+import common.by.ByEx;
+import common.by.CustomBy;
+import common.webdriver.IBrowser;
 import forms.SubmitEmailForm;
-import org.openqa.selenium.By;
 
-public class SignUpPage implements CustomCommands {
-    private final SelenideDriver selenideDriver;
-    private final By passwordInput = By.id("new_password");
-    private final By passwordConfirmationInput = By.id("confirmed_password");
-    private final By signUpBtn = By.cssSelector("button[type='submit']");
+public class SignUpPage {
+    private final IBrowser iBrowser;
+    private final CustomBy passwordInput = new CustomBy(ByEx.ID, "new_password");
+    private final CustomBy passwordConfirmationInput = new CustomBy(ByEx.ID, "confirmed_password");
+    private final CustomBy signUpBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
     @Inject
     SubmitEmailForm submitEmailForm;
 
     @Inject
-    public SignUpPage(Browser browser) {
-        this.selenideDriver = browser.getDriver();
+    public SignUpPage(IBrowser iBrowser) {
+        this.iBrowser = iBrowser;
     }
 
 
     public void setLogin(String login) {
-        setText(selenideDriver.$(submitEmailForm.getEmailInput()), login);
-        clickElement(selenideDriver.$(submitEmailForm.getContinueWithEmailBtn()));
+        iBrowser.getElement(submitEmailForm.getEmailInput()).setTextAfterLoad(login);
+        iBrowser.getElement(submitEmailForm.getContinueWithEmailBtn()).clickWithLoadElement();
     }
 
     public Boolean isLoginInputDisplayed() {
-        return selenideDriver.$(submitEmailForm.getEmailInput()).isDisplayed();
+        return iBrowser.getElement(submitEmailForm.getEmailInput()).isDisplayedElement();
     }
 
     public Boolean isContinueWithEmailBtnDisplayed() {
-        return selenideDriver.$(submitEmailForm.getContinueWithEmailBtn()).isDisplayed();
+        return iBrowser.getElement(submitEmailForm.getContinueWithEmailBtn()).isDisplayedElement();
     }
 
     public void setPassword(String password) {
-        setText(selenideDriver.$(passwordInput), password);
+        iBrowser.getElement(passwordInput).setTextAfterLoad(password);
     }
 
     public void setPasswordConfirmation(String password) {
-        setText(selenideDriver.$(passwordConfirmationInput), password);
+       iBrowser.getElement(passwordConfirmationInput).setTextAfterLoad(password);
     }
 
     public void signUpBtnClick() {
-        clickElement(selenideDriver.$(signUpBtn));
+        iBrowser.getElement(signUpBtn).clickWithLoadElement();
     }
 }

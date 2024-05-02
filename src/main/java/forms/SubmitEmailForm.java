@@ -1,10 +1,11 @@
 package forms;
 
+import common.by.ByEx;
+import common.by.CustomBy;
 import lombok.Data;
-import org.openqa.selenium.By;
 
 @Data
 public class SubmitEmailForm {
-    private final By emailInput = By.id("username");
-    private final By continueWithEmailBtn = By.cssSelector("button[type='submit']");
+    private final CustomBy emailInput = new CustomBy(ByEx.ID, "username");
+    private final CustomBy continueWithEmailBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
 }

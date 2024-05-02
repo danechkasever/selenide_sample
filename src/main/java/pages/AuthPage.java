@@ -1,43 +1,43 @@
 package pages;
 
-import com.codeborne.selenide.SelenideDriver;
 import com.google.inject.Inject;
-import common.webdriver.Browser;
-import common.webdriver.CustomCommands;
+import common.by.ByEx;
+import common.by.CustomBy;
+import common.webdriver.IBrowser;
 import forms.SubmitEmailForm;
-import org.openqa.selenium.By;
 
-public class AuthPage implements CustomCommands {
-    private final SelenideDriver selenideDriver;
-    private final By passwordInput = By.id("password");
-    private final By signInBtn = By.cssSelector("button[type='submit']");
+public class AuthPage  {
+    private final IBrowser iBrowser;
+    private final CustomBy passwordInput = new CustomBy(ByEx.ID, "password");
+    private final CustomBy signInBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
     @Inject
     SubmitEmailForm submitEmailForm;
 
+
     @Inject
-    public AuthPage(Browser browser) {
-        this.selenideDriver = browser.getDriver();
+    public AuthPage(IBrowser iBrowser) {
+        this.iBrowser = iBrowser;
     }
 
 
     public void setLogin(String login) {
-        setText(selenideDriver.$(submitEmailForm.getEmailInput()), login);
-        clickElement(selenideDriver.$(submitEmailForm.getContinueWithEmailBtn()));
+        iBrowser.getElement(submitEmailForm.getEmailInput()).setTextAfterLoad(login);
+        iBrowser.getElement(submitEmailForm.getContinueWithEmailBtn()).clickWithLoadElement();
     }
 
     public Boolean isLoginInputDisplayed() {
-        return selenideDriver.$(submitEmailForm.getEmailInput()).isDisplayed();
+        return iBrowser.getElement(submitEmailForm.getEmailInput()).isDisplayed();
     }
 
     public Boolean isContinueWithEmailBtnDisplayed() {
-        return selenideDriver.$(submitEmailForm.getContinueWithEmailBtn()).isDisplayed();
+        return iBrowser.getElement(submitEmailForm.getContinueWithEmailBtn()).isDisplayedElement();
     }
 
     public void setPassword(String password) {
-        setText(selenideDriver.$(passwordInput), password);
+        iBrowser.getElement(passwordInput).setTextAfterLoad(password);
     }
 
     public void signInBtnClick() {
-        clickElement(selenideDriver.$(signInBtn));
+        iBrowser.getElement(signInBtn).clickWithLoadElement();
     }
 }

@@ -1,19 +1,20 @@
 package steps;
 
 import com.google.inject.Inject;
-import common.webdriver.Browser;
+import common.webdriver.IBrowser;
 import io.qameta.allure.Step;
 import org.assertj.core.api.WithAssertions;
 import pages.MainPage;
 
 public class MainPageVisibilitySteps implements WithAssertions {
-    private final Browser browser;
+    private final IBrowser iBrowser;
     @Inject
     MainPage mainPage;
 
     @Inject
-    public MainPageVisibilitySteps(Browser browser) {
-        this.browser = browser;
+    public MainPageVisibilitySteps(IBrowser iBrowser
+    ) {
+        this.iBrowser = iBrowser;
     }
 
     @Step("Check Profile Button Visibility")

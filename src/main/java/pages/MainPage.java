@@ -1,145 +1,146 @@
 package pages;
 
-import com.codeborne.selenide.SelenideDriver;
 import com.google.inject.Inject;
-import common.webdriver.Browser;
-import common.webdriver.CustomCommands;
-import org.openqa.selenium.By;
+import common.by.ByEx;
+import common.by.CustomBy;
+import common.webdriver.IBrowser;
 
-public class MainPage implements CustomCommands {
-    private final SelenideDriver selenideDriver;
-    private final By logoLink = By.cssSelector("[data-testid='header-booking-logo']");
-    private final By languagePickerBtn = By.cssSelector("[data-testid='header-language-picker-trigger']");
-    private final By signUpLink = By.cssSelector("[data-testid='header-sign-up-button']");
-    private final By signInLink = By.cssSelector("[data-testid='header-sign-in-button']");
-    private final By profileBtn = By.cssSelector("[data-testid='header-profile']");
-    private final By accommodationsLink = By.id("accommodations");
-    private final By flightsLink = By.id("flights");
-    private final By packagesLink = By.id("packages");
-    private final By carsLink = By.id("cars");
-    private final By attractionsLink = By.id("attractions");
-    private final By airportTaxisLink = By.id("airport_taxis");
-    private final By destinationInput = By.id(":re:");
-    private final By dateFromBtn = By.cssSelector("[data-testid='date-display-field-start']");
-    private final By dateToBtn = By.cssSelector("[data-testid='date-display-field-end']");
-    private final By searchBtn = By.cssSelector("button[type='submit']");
+public class MainPage {
+    private final IBrowser iBrowser;
+    private final CustomBy logoLink = new CustomBy(ByEx.CSS, "[data-testid='header-booking-logo']");
+    private final CustomBy languagePickerBtn = new CustomBy(ByEx.CSS, "[data-testid='header-language-picker-trigger']");
+    private final CustomBy signUpLink = new CustomBy(ByEx.CSS, "[data-testid='header-sign-up-button']");
+    private final CustomBy signInLink = new CustomBy(ByEx.CSS, "[data-testid='header-sign-in-button']");
+    private final CustomBy profileBtn = new CustomBy(ByEx.CSS, "[data-testid='header-profile']");
+    private final CustomBy accommodationsLink = new CustomBy(ByEx.ID, "accommodations");
+    private final CustomBy flightsLink = new CustomBy(ByEx.ID, "flights");
+    private final CustomBy packagesLink = new CustomBy(ByEx.ID, "packages");
+    private final CustomBy carsLink = new CustomBy(ByEx.ID, "cars");
+    private final CustomBy attractionsLink = new CustomBy(ByEx.ID, "attractions");
+    private final CustomBy airportTaxisLink = new CustomBy(ByEx.ID, "airport_taxis");
+    private final CustomBy destinationInput = new CustomBy(ByEx.ID, ":re:");
+    private final CustomBy dateFromBtn = new CustomBy(ByEx.CSS, "[data-testid='date-display-field-start']");
+    private final CustomBy dateToBtn = new CustomBy(ByEx.CSS, "[data-testid='date-display-field-end']");
+    private final CustomBy searchBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
 
 
     @Inject
-    public MainPage(Browser browser) {
-        this.selenideDriver = browser.getDriver();
+    public MainPage(IBrowser iBrowser) {
+        this.iBrowser = iBrowser;
     }
 
     public Boolean isLogoLinkDisplayed() {
-        return selenideDriver.$(logoLink).isDisplayed();
+        return iBrowser.getElement(logoLink).isDisplayedElement();
     }
 
     public Boolean isLanguagePickerBtnDisplayed() {
-        return selenideDriver.$(languagePickerBtn).isDisplayed();
+        return iBrowser.getElement(languagePickerBtn).isDisplayedElement();
     }
 
     public Boolean isSignUpLinkDisplayed() {
-        return selenideDriver.$(signUpLink).isDisplayed();
+        return iBrowser.getElement(signUpLink).isDisplayedElement();
     }
 
     public Boolean isSignInLinkDisplayed() {
-        return selenideDriver.$(signInLink).isDisplayed();
+        return iBrowser.getElement(signInLink).isDisplayedElement();
     }
 
     public Boolean isProfileDisplayed() {
-        return selenideDriver.$(profileBtn).isDisplayed();
+        return iBrowser.getElement(profileBtn).isDisplayedElement();
     }
 
     public Boolean isAccommodationsLinkDisplayed() {
-        return selenideDriver.$(accommodationsLink).isDisplayed();
+        return iBrowser.getElement(accommodationsLink).isDisplayedElement();
     }
 
     public Boolean isFlightsLinkDisplayed() {
-        return selenideDriver.$(flightsLink).isDisplayed();
+        return iBrowser.getElement(flightsLink).isDisplayedElement();
     }
 
     public Boolean isPackagesLinkDisplayed() {
-        return selenideDriver.$(packagesLink).isDisplayed();
+        return iBrowser.getElement(packagesLink).isDisplayedElement();
     }
 
     public Boolean isCarsLinkDisplayed() {
-        return selenideDriver.$(carsLink).isDisplayed();
+        return iBrowser.getElement(carsLink).isDisplayedElement();
     }
 
     public Boolean isAttractionsLinkDisplayed() {
-        return selenideDriver.$(attractionsLink).isDisplayed();
+        return iBrowser.getElement(attractionsLink).isDisplayedElement();
     }
 
     public Boolean isAirportTaxisLinkDisplayed() {
-        return selenideDriver.$(airportTaxisLink).isDisplayed();
+        return iBrowser.getElement(airportTaxisLink).isDisplayedElement();
     }
 
 
     public Boolean isDestinationInputDisplayed() {
-        return selenideDriver.$(destinationInput).isDisplayed();
+        return iBrowser.getElement(destinationInput).isDisplayedElement();
     }
 
     public Boolean isDateFromBtnDisplayed() {
-        return selenideDriver.$(dateFromBtn).isDisplayed();
+        return iBrowser.getElement(dateFromBtn).isDisplayedElement();
     }
 
     public Boolean isDateToBtnDisplayed() {
-        return selenideDriver.$(dateToBtn).isDisplayed();
+        return iBrowser.getElement(dateToBtn).isDisplayedElement();
     }
 
     public Boolean isSearchBtnDisplayed() {
-        return selenideDriver.$(searchBtn).isDisplayed();
+        return iBrowser.getElement(searchBtn).isDisplayedElement();
     }
 
     public void languagePickerBtnClick() {
-        clickElement(selenideDriver.$(languagePickerBtn));
+        iBrowser.getElement(languagePickerBtn).clickWithLoadElement();
     }
 
     public void signUpLinkClick() {
-        clickElement(selenideDriver.$(signUpLink));
+        iBrowser.getElement(signUpLink).clickWithLoadElement();
     }
 
     public void signInLinkClick() {
-        clickElement(selenideDriver.$(signInLink));
+        iBrowser.getElement(signInLink).clickWithLoadElement();
     }
 
+
     public void accommodationsLinkClick() {
-        clickElement(selenideDriver.$(accommodationsLink));
+        iBrowser.getElement(accommodationsLink).clickWithScrollElement();
     }
 
     public void flightsLinkClick() {
-        clickElement(selenideDriver.$(flightsLink));
+        iBrowser.getElement(flightsLink).clickWithScrollElement();
     }
 
     public void packagesLinkClick() {
-        clickElement(selenideDriver.$(packagesLink));
+        iBrowser.getElement(packagesLink).clickWithScrollElement();
     }
 
     public void carsLinkClick() {
-        clickElement(selenideDriver.$(carsLink));
+        iBrowser.getElement(carsLink).clickWithScrollElement();
     }
 
     public void attractionsLinkClick() {
-        clickElement(selenideDriver.$(attractionsLink));
+        iBrowser.getElement(attractionsLink).clickWithScrollElement();
     }
 
     public void airportTaxisLinkClick() {
-        clickElement(selenideDriver.$(airportTaxisLink));
+        iBrowser.getElement(airportTaxisLink).clickWithScrollElement();
     }
 
     public void airportTaxisLinkSetText(String destination) {
-        setText(selenideDriver.$(destinationInput), destination);
+        iBrowser.getElement(destinationInput).clickWithScrollElement();
     }
 
     public void dateFromBtnClick() {
-        clickElement(selenideDriver.$(dateFromBtn));
+        iBrowser.getElement(dateFromBtn).clickWithScrollElement();
     }
 
     public void dateToBtnClick() {
-        clickElement(selenideDriver.$(dateToBtn));
+        iBrowser.getElement(dateToBtn).clickWithScrollElement();
     }
 
     public void searchBtnClick() {
-        clickElement(selenideDriver.$(searchBtn));
+        iBrowser.getElement(searchBtn).clickWithScrollElement();
     }
 }
+

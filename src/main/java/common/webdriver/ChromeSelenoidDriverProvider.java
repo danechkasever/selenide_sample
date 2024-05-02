@@ -1,6 +1,5 @@
 package common.webdriver;
 
-
 import com.codeborne.selenide.WebDriverProvider;
 import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
@@ -24,9 +23,9 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
         options.addArguments("--disable-web-security");
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("download.extensions_to_open", "");
-        chromePrefs.put("browser.download.folderList", 2);
+        chromePrefs.put("IBrowser.download.folderList", 2);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir") + "\\report");
-        chromePrefs.put("browser.helperApps.neverAsk.saveToDisk", "text/csv");
+        chromePrefs.put("IBrowser.helperApps.neverAsk.saveToDisk", "text/csv");
         chromePrefs.put("w3c", false);
         options.setExperimentalOption("prefs", chromePrefs);
         DesiredCapabilities desiredcapabilities = new DesiredCapabilities();
