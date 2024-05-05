@@ -31,4 +31,9 @@ public class MainPageVisibilitySteps implements WithAssertions {
     public void navigateToSignUp() {
         mainPage.signUpLinkClick();
     }
+
+    @Step("Check property types count")
+    public void checkPropertyTypesCount(Integer count) {
+        assertThat(mainPage.getPropertyTypesCount()).isEqualTo(count).as("Property types count");
+    }
 }

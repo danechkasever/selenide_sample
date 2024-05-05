@@ -22,11 +22,18 @@ public class MainPage {
     private final CustomBy dateFromBtn = new CustomBy(ByEx.CSS, "[data-testid='date-display-field-start']");
     private final CustomBy dateToBtn = new CustomBy(ByEx.CSS, "[data-testid='date-display-field-end']");
     private final CustomBy searchBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
+    private final CustomBy propertyType = new CustomBy(ByEx.XPATH, ".//*[contains(@*, 'PropertyTypes')]//*[@data-testid='web-core-stacked-card']");
+
 
 
     @Inject
     public MainPage(IBrowser iBrowser) {
         this.iBrowser = iBrowser;
+    }
+
+
+    public Integer getPropertyTypesCount() {
+        return iBrowser.getElements(propertyType).size();
     }
 
     public Boolean isLogoLinkDisplayed() {

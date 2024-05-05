@@ -2,12 +2,12 @@ package common.webdriver;
 
 import com.codeborne.selenide.SelenideConfig;
 import com.codeborne.selenide.SelenideDriver;
-import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.impl.ElementFinder;
 import common.by.CustomBy;
 import common.element.ISelenideElement;
 import configs.Configurations;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Browser implements IBrowser {
@@ -17,9 +17,7 @@ public class Browser implements IBrowser {
         selenideDriver = new SelenideDriver(setConfigs());
     }
 
-
-    @Override
-    public SelenideConfig setConfigs() {
+    private SelenideConfig setConfigs() {
         SelenideConfig selenideConfig = new SelenideConfig();
         return selenideConfig
                 .screenshots(true)
@@ -39,25 +37,25 @@ public class Browser implements IBrowser {
     }
 
     @Override
-    public SelenideDriver getDriver() {
-        return selenideDriver;
-    }
-
     public void openPage() {
         selenideDriver.open(Configurations.url);
     }
 
+    @Override
     public void openPage(String url) {
         selenideDriver.open(url);
     }
 
+    @Override
     public void refresh() {
         selenideDriver.refresh();
     }
 
+    @Override
     public void closeDriver() {
         selenideDriver.close();
     }
+
 
     @Override
     public ISelenideElement getElement(CustomBy customBy) {
@@ -65,8 +63,12 @@ public class Browser implements IBrowser {
     }
 
     @Override
-    public List<SelenideElement> getElements(CustomBy customBy) {
-
-        return (List<SelenideElement>) selenideDriver.$$(customBy.by());
+    public List<ISelenideElement> getElements(CustomBy customBy) {
+        int size = selenideDriver.$$(customBy.by()).size();
+        List<ISelenideElement> iSelenideElementList = new ArrayList<>();
+        for (int i = 1; i <= size; i++) {
+            iSelenideElementList.add(ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, null, customBy.by(), i));
+        }
+        return iSelenideElementList;
     }
 }
