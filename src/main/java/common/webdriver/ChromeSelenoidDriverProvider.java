@@ -20,13 +20,10 @@ public class ChromeSelenoidDriverProvider implements WebDriverProvider {
     public WebDriver createDriver(Capabilities capabilities) {
 
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-web-security");
         HashMap<String, Object> chromePrefs = new HashMap<>();
         chromePrefs.put("download.extensions_to_open", "");
-        chromePrefs.put("IBrowser.download.folderList", 2);
+        chromePrefs.put("Browser.download.folderList", 2);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir") + "\\report");
-        chromePrefs.put("IBrowser.helperApps.neverAsk.saveToDisk", "text/csv");
-        chromePrefs.put("w3c", false);
         options.setExperimentalOption("prefs", chromePrefs);
         DesiredCapabilities desiredcapabilities = new DesiredCapabilities();
         desiredcapabilities.setBrowserName("chrome");

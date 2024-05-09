@@ -36,4 +36,9 @@ public class MainPageVisibilitySteps implements WithAssertions {
     public void checkPropertyTypesCount(Integer count) {
         assertThat(mainPage.getPropertyTypesCount()).isEqualTo(count).as("Property types count");
     }
+
+    @Step("Check top menu item's count")
+    public void checkTopMenuItemsCount(Integer count) {
+        assertThat(mainPage.getTopMenuItemsCount()).isEqualTo(count).as("Top menu items count");
+    }
 }

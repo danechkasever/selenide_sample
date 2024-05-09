@@ -1,7 +1,5 @@
 package common.webdriver;
 
-import com.codeborne.selenide.SelenideConfig;
-import com.codeborne.selenide.SelenideDriver;
 import common.by.CustomBy;
 import common.element.ISelenideElement;
 
@@ -22,5 +20,9 @@ public interface IBrowser {
     ISelenideElement getElement(CustomBy customBy);
 
     List<ISelenideElement> getElements(CustomBy customBy);
+
+    ISelenideElement getChildElement(CustomBy parent, CustomBy child);
+
+    List<ISelenideElement> getChildElements(CustomBy parent, CustomBy child);
 
 }

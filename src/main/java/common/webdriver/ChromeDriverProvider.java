@@ -16,16 +16,10 @@ public class ChromeDriverProvider implements WebDriverProvider {
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--disable-web-security");
         HashMap<String, Object> chromePrefs = new HashMap<>();
-        chromePrefs.put("profile.default_content_settings.popups", 0);
-        chromePrefs.put("pdfjs.disabled", true);
         chromePrefs.put("disable-popup-blocking", true);
-        chromePrefs.put("download.prompt_for_download", false);
         chromePrefs.put("plugins.always_open_pdf_externally", true);
         chromePrefs.put("download.default_directory", System.getProperty("user.dir") + "\\report");
-        chromePrefs.put("IBrowser.helperApps.neverAsk.saveToDisk", "text/csv");
-        chromePrefs.put("w3c", false);
         options.setExperimentalOption("prefs", chromePrefs);
         DesiredCapabilities desiredcapabilities = new DesiredCapabilities();
         desiredcapabilities.setBrowserName("chrome");

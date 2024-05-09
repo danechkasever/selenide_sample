@@ -71,4 +71,20 @@ public class Browser implements IBrowser {
         }
         return iSelenideElementList;
     }
+
+
+    @Override
+    public ISelenideElement getChildElement(CustomBy parent, CustomBy child) {
+        return ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), child.by(), 0);
+    }
+
+    @Override
+    public List<ISelenideElement> getChildElements(CustomBy parent, CustomBy child) {
+        int size = selenideDriver.$(parent.by()).$$(child.by()).size();
+        List<ISelenideElement> iSelenideElementList = new ArrayList<>();
+        for (int i = 1; i <= size; i++) {
+            iSelenideElementList.add(ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), child.by(), i));
+        }
+        return iSelenideElementList;
+    }
 }

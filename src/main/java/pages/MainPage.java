@@ -23,6 +23,11 @@ public class MainPage {
     private final CustomBy dateToBtn = new CustomBy(ByEx.CSS, "[data-testid='date-display-field-end']");
     private final CustomBy searchBtn = new CustomBy(ByEx.CSS, "button[type='submit']");
     private final CustomBy propertyType = new CustomBy(ByEx.XPATH, ".//*[contains(@*, 'PropertyTypes')]//*[@data-testid='web-core-stacked-card']");
+    private final CustomBy picture = new CustomBy(ByEx.XPATH, ".//picture");
+    private final CustomBy topMenu = new CustomBy(ByEx.XPATH, ".//nav[@data-testid='header-xpb']");
+    private final CustomBy link = new CustomBy(ByEx.XPATH, ".//a");
+
+
 
 
 
@@ -33,9 +38,14 @@ public class MainPage {
 
 
     public Integer getPropertyTypesCount() {
+        iBrowser.getChildElement(propertyType, picture).getAttribute("class");
         return iBrowser.getElements(propertyType).size();
     }
 
+    public Integer getTopMenuItemsCount() {
+        return iBrowser.getChildElements(topMenu, link).size();
+
+    }
     public Boolean isLogoLinkDisplayed() {
         return iBrowser.getElement(logoLink).isDisplayedElement();
     }

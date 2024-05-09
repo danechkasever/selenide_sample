@@ -11,7 +11,13 @@ import resolvers.ActionResolver;
 public class MainPageTest {
     @Test()
     @ExtendWith(ActionResolver.class)
-    void checkPropertyTypesCountTest(ActionsParameter actionsParameter) throws InterruptedException {
+    void checkPropertyTypesCountTest(ActionsParameter actionsParameter) {
         actionsParameter.getAllSteps().mainPageVisibilitySteps().checkPropertyTypesCount(24);
+    }
+
+    @Test()
+    @ExtendWith(ActionResolver.class)
+    void checkTopMenuItemsCountTest(ActionsParameter actionsParameter) {
+        actionsParameter.getAllSteps().mainPageVisibilitySteps().checkTopMenuItemsCount(5);
     }
 }
