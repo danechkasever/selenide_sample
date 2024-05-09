@@ -38,13 +38,11 @@ public class MainPage {
 
 
     public Integer getPropertyTypesCount() {
-        iBrowser.getChildElement(propertyType, picture).getAttribute("class");
         return iBrowser.getElements(propertyType).size();
     }
 
     public Integer getTopMenuItemsCount() {
-        return iBrowser.getChildElements(topMenu, link).size();
-
+        return iBrowser.getElements(link, topMenu).size();
     }
     public Boolean isLogoLinkDisplayed() {
         return iBrowser.getElement(logoLink).isDisplayedElement();

@@ -59,32 +59,36 @@ public class Browser implements IBrowser {
 
     @Override
     public ISelenideElement getElement(CustomBy customBy) {
-        return ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, null, customBy.by(), 0);
+        return getISelenideElement(null, customBy, 0);
+    }
+
+    @Override
+    public ISelenideElement getElement(CustomBy customBy, CustomBy parent) {
+        return getISelenideElement(new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), customBy, 0);
     }
 
     @Override
     public List<ISelenideElement> getElements(CustomBy customBy) {
         int size = selenideDriver.$$(customBy.by()).size();
+        return getISelenideElements(size, null, customBy);
+    }
+
+    @Override
+    public List<ISelenideElement> getElements(CustomBy customBy, CustomBy parent) {
+        int size = selenideDriver.$(parent.by()).$$( customBy.by()).size();
+        return getISelenideElements(size, new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), customBy);
+    }
+
+    private ISelenideElement getISelenideElement(ElementFinder parent, CustomBy customBy, int i) {
+        return ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, parent, customBy.by(), i);
+    }
+
+    private List<ISelenideElement> getISelenideElements(int size, ElementFinder parent, CustomBy customBy) {
         List<ISelenideElement> iSelenideElementList = new ArrayList<>();
         for (int i = 1; i <= size; i++) {
-            iSelenideElementList.add(ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, null, customBy.by(), i));
+            iSelenideElementList.add(getISelenideElement(parent, customBy, i));
         }
         return iSelenideElementList;
     }
 
-
-    @Override
-    public ISelenideElement getChildElement(CustomBy parent, CustomBy child) {
-        return ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), child.by(), 0);
-    }
-
-    @Override
-    public List<ISelenideElement> getChildElements(CustomBy parent, CustomBy child) {
-        int size = selenideDriver.$(parent.by()).$$(child.by()).size();
-        List<ISelenideElement> iSelenideElementList = new ArrayList<>();
-        for (int i = 1; i <= size; i++) {
-            iSelenideElementList.add(ElementFinder.wrap(selenideDriver.driver(), ISelenideElement.class, new ElementFinder(selenideDriver.driver(), null, parent.by(), 0, null), child.by(), i));
-        }
-        return iSelenideElementList;
-    }
 }
